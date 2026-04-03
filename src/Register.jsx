@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import API_BASE from "./api";
+
 function Register({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const API_URL = "https://smartbus-backend-api.onrender.com/api/auth";
-
   const handleRegister = async () => {
-    if (username === "" || password === "") {
-      alert("Enter username and password");
-      return;
-    }
-
     try {
-      const response = await fetch(`${API_URL}register`, {
+      const res = await fetch(`${API_BASE}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -24,16 +18,16 @@ function Register({ setPage }) {
         })
       });
 
-      const data = await response.text();
-      alert(data);
+      const data = await res.json();
+      alert(data.message);
 
-      if (data.trim() === "Registered successfully")  {
+      if (data.success === true) {
         setPage("login");
       }
 
     } catch (error) {
-      console.error(error);
-      alert("Register failed");
+      console.log(error);
+      alert("Register error");
     }
   };
 
@@ -45,18 +39,17 @@ function Register({ setPage }) {
         <input
           type="text"
           placeholder="Username"
-          value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
-          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
         <button onClick={handleRegister}>Register</button>
+
         <button onClick={() => setPage("login")}>Back</button>
       </div>
     </div>

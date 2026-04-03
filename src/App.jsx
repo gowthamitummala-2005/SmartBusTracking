@@ -4,6 +4,7 @@ import Register from "./Register";
 import DashboardChart from "./DashboardChart";
 import MapView from "./MapView";
 import QRCheckIn from "./QRCheckIn";
+import "App.css"; 
 
 function App() {
   const [page, setPage] = useState("login");
@@ -27,7 +28,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app-container">
       <h1>Smart Bus Tracking System</h1>
 
       <div className="sidebar">
