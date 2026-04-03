@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  font-size: 32px;
+  margin-top: 10px;
+}
+
+/* Sidebar buttons */
+.sidebar {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.sidebar button {
+  margin: 5px;
+  padding: 10px 20px;
+  border: none;
+  background: #00c6ff;
+  color: black;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar button:hover {
+  background: #00a2cc;
+}
+
+/* DASHBOARD */
+.dashboard-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.charts-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+/* Bar chart smaller */
+.bar-chart {
+  width: 350px;
+  height: 250px;
+}
+
+/* Pie chart much smaller */
+.pie-chart {
+  width: 350px;
+  height: 200px;
+}
+
+.login-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  width: 420px;
+  padding: 30px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.login-box h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.input-row input {
+  width: 240px;
+  padding: 8px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.form-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: #00c6ff;
+  cursor: pointer;
+}
