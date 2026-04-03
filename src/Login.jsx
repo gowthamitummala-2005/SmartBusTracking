@@ -4,7 +4,7 @@ function Login({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const API_URL = "https://smartbus-backend.onrender.com/api/auth";
+  const API_URL = "https://smartbus-backend-api.onrender.com/api/auth";
 
   const handleLogin = async () => {
     try {
