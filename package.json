@@ -15,20 +15,20 @@
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",
     "react": "^18.2.0",
-    "react-chartjs-2": "^5.3.1",
     "react-dom": "^18.2.0",
+    "react-chartjs-2": "^5.3.1",
     "react-leaflet": "^4.2.1",
     "react-leaflet-routing-machine": "^0.0.5",
     "react-qr-code": "^2.0.18",
-    "react-qr-reader": "^3.0.0-beta-1",
+    "react-qr-reader": "^2.2.1",
     "react-router-dom": "^6.22.3",
     "recharts": "^2.10.4"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.4.0",
     "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^5.2.0"
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0"
   }
 }
