@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-
+import API_BASE from "./api";
 function Register({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const API_URL = "https://smartbus-backend-api.onrender.com/api/auth";
 
   const handleRegister = async () => {
     if (username === "" || password === "") {
@@ -13,7 +11,7 @@ function Register({ setPage }) {
     }
 
     try {
-      const response = await fetch(`${API_URL}/register`, {
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
