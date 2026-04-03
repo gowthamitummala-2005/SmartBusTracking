@@ -10,6 +10,15 @@ function QRCheckIn() {
       return;
     }
 
+    // ADDED: backend check-in
+    fetch(`${API_BASE}/api/scan`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ student, route }),
+    });
+
     alert(student + " checked into " + route);
   };
 

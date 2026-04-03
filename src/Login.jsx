@@ -1,10 +1,27 @@
+import API_BASE from "./api";
 import React, { useState } from "react";
-
 function Login({ onLogin, setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLoginClick = () => {
+
+    // ADDED: backend login check
+    fetch(`${API_BASE}/api/users`)
+      .then(res => res.json())
+      .then(users => {
+        const validUser = users.find(
+          u => u.username === username && u.password === password
+        );
+
+        if (validUser) {
+          onLogin();
+        } else {
+          alert("Invalid username or password");
+        }
+      })
+      .catch(() => {
+        // fallback old login
     if (
       (username === "admin" && password === "admin") ||
       (username !== "" && password !== "")
@@ -13,8 +30,8 @@ function Login({ onLogin, setPage }) {
     } else {
       alert("Invalid username or password");
     }
+  });
   };
-
   return (
     <div className="login-wrapper">
       <div className="login-box">

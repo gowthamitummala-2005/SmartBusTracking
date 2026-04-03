@@ -5,6 +5,16 @@ function Register({ setPage }) {
   const [password, setPassword] = useState("");
 
   const handleRegister = () => {
+
+     // ADDED: backend register
+    fetch(`${API_BASE}/api/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
     if (username !== "" && password !== "") {
       alert("Registered Successfully!");
       setPage("login");

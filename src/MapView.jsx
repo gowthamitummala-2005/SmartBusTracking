@@ -1,3 +1,4 @@
+import API_BASE from "./api";
 import React, { useEffect, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -57,6 +58,10 @@ function MapView(){
   const [arrivalText,setArrivalText]=useState("");
 
   useEffect(()=>{
+     fetch(`${API_BASE}/api/bus`)
+      .then(res=>res.json())
+      .then(data=>console.log("Backend Routes:",data))
+      .catch(err=>console.log(err));
     if(map){
       map.remove();
     }

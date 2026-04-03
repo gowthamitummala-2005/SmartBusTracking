@@ -1,3 +1,4 @@
+import API_BASE from "./api";
 import React from "react";
 import { Bar, Pie } from "react-chartjs-2";
 import {
@@ -20,6 +21,18 @@ ChartJS.register(
 );
 
 function DashboardChart() {
+const [busData, setBusData] = useState([]);
+
+useEffect(() => {
+  fetch(`${API_BASE}/api/bus`)
+    .then(res => res.json())
+    .then(data => {
+      setBusData(data);
+    })
+    .catch((err) =>
+console.error(err));
+}, []);
+
   const barData = {
     labels: ["Route A", "Route B", "Route C", "Route D", "Route E"],
     datasets: [
