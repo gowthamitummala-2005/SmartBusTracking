@@ -1,5 +1,5 @@
+import React, { useState, useEffect} from "react";
 import API_BASE from "./api";
-import React from "react";
 import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -22,7 +22,6 @@ ChartJS.register(
 
 function DashboardChart() {
 const [busData, setBusData] = useState([]);
-const API_URL="https://smartbus-backend.onrender.com"
 
 useEffect(() => {
   fetch(`${API_BASE}/api/bus`)

@@ -1,3 +1,3 @@
-const API_BASE = "https://smartbus-backend-gzy7.onrender.com";
+const API_BASE = "https://smartbus-backend-ap.onrender.com";
 
 export default API_BASE;

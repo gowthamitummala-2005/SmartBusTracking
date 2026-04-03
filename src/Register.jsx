@@ -27,7 +27,7 @@ function Register({ setPage }) {
       const data = await response.text();
       alert(data);
 
-      if (data.includes("Registered")) {
+      if (data.trim() === "Registered successfully")  {
         setPage("login");
       }
 

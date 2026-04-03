@@ -22,8 +22,8 @@ function Login({ setPage }) {
       const data = await response.text();
       alert(data);
 
-      if (data.includes("Login successful")) {
-        setPage("dashboard");
+      if (data.trim() ===("Login successful")) {
+        onLogin();
       }
 
     } catch (error) {

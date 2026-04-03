@@ -33,7 +33,7 @@ function App() {
       <div className="sidebar">
         <button onClick={() => setPage("dashboard")}>Dashboard</button>
         <button onClick={() => setPage("track")}>Track Bus</button>
-        <button onClick={() => setPage("qr")}>QR Check-In</button>
+        <button onClick={() => setPage("qr")}>QR CheckIn</button>
         <button onClick={handleLogout}>Logout</button>
       </div>
 
