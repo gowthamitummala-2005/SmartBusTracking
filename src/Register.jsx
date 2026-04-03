@@ -3,23 +3,37 @@ import React, { useState } from "react";
 function Register({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const API_URL="https://smartbus-backend.onrender.com"
-  const handleRegister = () => {
 
-     // ADDED: backend register
-    fetch(`${API_BASE}/api/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    });
+  const API_URL = "https://smartbus-backend.onrender.com/api/auth";
 
-    if (username !== "" && password !== "") {
-      alert("Registered Successfully!");
-      setPage("login");
-    } else {
-      alert("Please enter username and password");
+  const handleRegister = async () => {
+    if (username === "" || password === "") {
+      alert("Enter username and password");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      });
+
+      const data = await response.text();
+      alert(data);
+
+      if (data.includes("Registered")) {
+        setPage("login");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Register failed");
     }
   };
 
@@ -28,28 +42,22 @@ function Register({ setPage }) {
       <div className="login-box">
         <h2>Register</h2>
 
-        <div className="input-row">
-          <label>Username</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-        <div className="input-row">
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <div className="form-buttons">
-          <button onClick={handleRegister}>Register</button>
-          <button onClick={() => setPage("login")}>Back</button>
-        </div>
+        <button onClick={handleRegister}>Register</button>
+        <button onClick={() => setPage("login")}>Back</button>
       </div>
     </div>
   );

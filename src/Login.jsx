@@ -1,65 +1,58 @@
-import API_BASE from "./api";
 import React, { useState } from "react";
-function Login({ onLogin, setPage }) {
+
+function Login({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const API_URL="https://smartbus-backend.onrender.com"
 
-  const handleLoginClick = () => {
+  const API_URL = "https://smartbus-backend.onrender.com/api/auth";
 
-    // ADDED: backend login check
-    fetch(`${API_BASE}/api/users`)
-      .then(res => res.json())
-      .then(users => {
-        const validUser = users.find(
-          u => u.username === username && u.password === password
-        );
+  const handleLogin = async () => {
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      });
 
-        if (validUser) {
-          onLogin();
-        } else {
-          alert("Invalid username or password");
-        }
-      })
-      .catch(() => {
-        // fallback old login
-    if (
-      (username === "admin" && password === "admin") ||
-      (username !== "" && password !== "")
-    ) {
-      onLogin();
-    } else {
-      alert("Invalid username or password");
+      const data = await response.text();
+      alert(data);
+
+      if (data.includes("Login successful")) {
+        setPage("dashboard");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Login failed");
     }
-  });
   };
+
   return (
     <div className="login-wrapper">
       <div className="login-box">
         <h2>Login</h2>
 
-        <div className="input-row">
-          <label>Username</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
 
-        <div className="input-row">
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-        <div className="form-buttons">
-          <button onClick={handleLoginClick}>Login</button>
-          <button onClick={() => setPage("register")}>Register</button>
-        </div>
+        <button onClick={handleLogin}>Login</button>
+        <button onClick={() => setPage("register")}>Register</button>
       </div>
     </div>
   );
