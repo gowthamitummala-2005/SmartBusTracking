@@ -4,9 +4,11 @@ function Login({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const API_URL = "https://smartbus-backend-api.onrender.com/api/auth";
+
   const handleLogin = async () => {
     try {
-      const response = await fetch(`${API_BASE}/api/auth/login`, {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
