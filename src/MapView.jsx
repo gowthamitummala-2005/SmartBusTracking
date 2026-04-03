@@ -56,6 +56,7 @@ function MapView(){
   const [showTable,setShowTable]=useState(false);
   const [weatherText,setWeatherText]=useState("");
   const [arrivalText,setArrivalText]=useState("");
+  const API_URL="https://smartbus-backend.onrender.com"
 
   useEffect(()=>{
      fetch(`${API_BASE}/api/bus`)

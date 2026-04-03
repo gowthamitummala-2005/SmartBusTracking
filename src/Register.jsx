@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Register({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const API_URL="https://smartbus-backend.onrender.com"
   const handleRegister = () => {
 
      // ADDED: backend register

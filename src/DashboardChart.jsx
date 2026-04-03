@@ -22,6 +22,7 @@ ChartJS.register(
 
 function DashboardChart() {
 const [busData, setBusData] = useState([]);
+const API_URL="https://smartbus-backend.onrender.com"
 
 useEffect(() => {
   fetch(`${API_BASE}/api/bus`)
