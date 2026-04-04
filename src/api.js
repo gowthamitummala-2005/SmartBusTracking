@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://smartbus-backend-url.onrender.com"
+  baseURL: "https://YOUR-BACKEND-URL.onrender.com"
 });
 
 export default API;
