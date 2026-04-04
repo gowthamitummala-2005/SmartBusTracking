@@ -13,6 +13,7 @@ function Register({ setPage }) {
       setPage("login");
     } catch (err) {
       alert("Register error");
+      console.error(err); 
     }
   };
 
@@ -29,9 +30,7 @@ function Register({ setPage }) {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleRegister}>Register</button>
-        <p onClick={() => setPage("login")}>
-          Back to Login
-        </p>
+        <button onClick={() => setPage("login")}> Back </button>
       </div>
   );
 }

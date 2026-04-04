@@ -13,10 +13,11 @@ function Login({ onLogin, setPage }) {
         alert("Login successful");
         onLogin();
       } else {
-        alert("Invalid credentials");
+        alert("res.data.message");
       }
     } catch (err) {
       alert("Login error");
+      console.error(err);
     }
   };
 
@@ -35,9 +36,7 @@ function Login({ onLogin, setPage }) {
 
         <button onClick={handleLogin}>Login</button>
 
-        <p onClick={() => setPage("register")}>
-          Go to Register
-        </p>
+        <p onClick={() => setPage("register")}> Go to Register</p>
       </div>
   );
 }
