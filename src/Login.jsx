@@ -7,38 +7,28 @@ function Login({ onLogin, setPage }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch('https://smartbus-backend-gzy7.onrender.com/api/auth/login?username=${username}&password=${password}');
+      const res = await API.get(`/login?username=${username}&password=${password}`);
 
-      const data = await res.json();
-      if (data.success) {
+      if (res.data.success) {
         alert("Login successful");
         onLogin();
       } else {
-        alert("data.message");
+        alert(res.data.message);
       }
-    } catch (error) {
-      console.error(error);
-      alert("Login error"); 
+    } catch (err) {
+      console.log(err);
+      alert("Login error");
     }
   };
 
   return (
     <div>
-        <h2>Login</h2>
-        <input
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button onClick={handleLogin}>Login</button>
-
-        <button onClick={() => setPage("register")}>Register</button>
-      </div>
+      <h2>Login</h2>
+      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+      <button onClick={handleLogin}>Login</button>
+      <button onClick={() => setPage("register")}>Register</button>
+    </div>
   );
 }
 

@@ -7,32 +7,23 @@ function Register({ setPage }) {
 
   const handleRegister = async () => {
     try {
-      const res = await fetch('https://smartbus-backend-gzy7.onrender.com/api/auth/register?username=${username}&password=${password}');
-
-      const data = await res.json();
-      alert(data.message);
+      const res = await API.get(`/register?username=${username}&password=${password}`);
+      alert(res.data.message);
       setPage("login");
-    } catch (error) {
-      console.error(error);
-      alert("Registration error");
+    } catch (err) {
+      console.log(err);
+      alert("Register error");
     }
   };
 
   return (
     <div>
-        <h2>Register</h2>
-        <input
-          placeholder="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button onClick={handleRegister}>Register</button>
-        <button onClick={() => setPage("login")}> Back </button>
-      </div>
+      <h2>Register</h2>
+      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+      <button onClick={handleRegister}>Register</button>
+      <button onClick={() => setPage("login")}>Back</button>
+    </div>
   );
 }
 
