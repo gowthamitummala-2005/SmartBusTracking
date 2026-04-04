@@ -7,13 +7,14 @@ function Register({ setPage }) {
 
   const handleRegister = async () => {
     try {
-      const res = await API.get(`/register?username=${username}&password=${password}`);
+      const res = await fetch('https://smartbus-backend-gzy7.onrender.com/api/auth/register?username=${username}&password=${password}');
 
-      alert(res.data.message);
+      const data = await res.json();
+      alert(data.message);
       setPage("login");
-    } catch (err) {
-      alert("Register error");
-      console.error(err); 
+    } catch (error) {
+      console.error(error);
+      alert("Registration error");
     }
   };
 

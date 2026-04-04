@@ -7,17 +7,18 @@ function Login({ onLogin, setPage }) {
 
   const handleLogin = async () => {
     try {
-      const res = await API.get(`/login?username=${username}&password=${password}`);
+      const res = await fetch('https://smartbus-backend-gzy7.onrender.com/api/auth/login?username=${username}&password=${password}');
 
-      if (res.data.success) {
+      const data = await res.json();
+      if (data.success) {
         alert("Login successful");
         onLogin();
       } else {
-        alert("res.data.message");
+        alert("data.message");
       }
-    } catch (err) {
-      alert("Login error");
-      console.error(err);
+    } catch (error) {
+      console.error(error);
+      alert("Login error"); 
     }
   };
 
@@ -36,7 +37,7 @@ function Login({ onLogin, setPage }) {
 
         <button onClick={handleLogin}>Login</button>
 
-        <p onClick={() => setPage("register")}> Go to Register</p>
+        <button onClick={() => setPage("register")}>Register</button>
       </div>
   );
 }
