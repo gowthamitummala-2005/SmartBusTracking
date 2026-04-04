@@ -1,4 +1,4 @@
-import API_BASE from "./api";
+import API_BASE from "./api.js";
 import React, { useEffect, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";

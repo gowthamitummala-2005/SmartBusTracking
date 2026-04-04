@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API_BASE from "./api";
+import API_BASE from "./api.js";
 
 function Register({ setPage }) {
   const [username, setUsername] = useState("");
