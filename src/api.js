@@ -1,3 +1,7 @@
-const API_BASE = "https://smartbus-backend-api.onrender.com";
+import axios from "axios";
 
-export default API_BASE;
+const API = axios.create({
+  baseURL: "https://smartbus-backend-url.onrender.com"
+});
+
+export default API;
