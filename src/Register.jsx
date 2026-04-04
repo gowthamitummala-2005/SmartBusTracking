@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import API_BASE from "./api.js";
+import { useState } from "react";
+import API from "./api";
 
 function Register({ setPage }) {
   const [username, setUsername] = useState("");
@@ -7,26 +7,13 @@ function Register({ setPage }) {
 
   const handleRegister = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password
-        })
-      });
+      const res = await API.get(
+        `/register?username=${username}&password=${password}`
+      );
 
-      const data = await res.json();
-      alert(data.message);
-
-      if (data.success === true) {
-        setPage("login");
-      }
-
-    } catch (error) {
-      console.log(error);
+      alert(res.data.message);
+      setPage("login");
+    } catch (err) {
       alert("Register error");
     }
   };
@@ -37,7 +24,6 @@ function Register({ setPage }) {
         <h2>Register</h2>
 
         <input
-          type="text"
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -50,7 +36,9 @@ function Register({ setPage }) {
 
         <button onClick={handleRegister}>Register</button>
 
-        <button onClick={() => setPage("login")}>Back</button>
+        <p onClick={() => setPage("login")}>
+          Back to Login
+        </p>
       </div>
     </div>
   );

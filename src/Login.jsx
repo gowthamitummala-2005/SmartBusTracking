@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import API_BASE from "./api.js";
+import { useState } from "react";
+import API from "./api";
 
 function Login({ onLogin, setPage }) {
   const [username, setUsername] = useState("");
@@ -7,27 +7,17 @@ function Login({ onLogin, setPage }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password
-        })
-      });
+      const res = await API.get(
+        `/login?username=${username}&password=${password}`
+      );
 
-      const data = await res.json();
-
-      if (data.success === true) {
-        onLogin(); // THIS moves to next page
+      if (res.data.success) {
+        alert("Login successful");
+        onLogin();
       } else {
-        alert(data.message);
+        alert("Invalid credentials");
       }
-
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
       alert("Login error");
     }
   };
@@ -38,7 +28,6 @@ function Login({ onLogin, setPage }) {
         <h2>Login</h2>
 
         <input
-          type="text"
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
@@ -51,7 +40,9 @@ function Login({ onLogin, setPage }) {
 
         <button onClick={handleLogin}>Login</button>
 
-        <button onClick={() => setPage("register")}>Register</button>
+        <p onClick={() => setPage("register")}>
+          Go to Register
+        </p>
       </div>
     </div>
   );
