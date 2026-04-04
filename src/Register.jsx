@@ -7,10 +7,7 @@ function Register({ setPage }) {
 
   const handleRegister = async () => {
     try {
-      const res = await API.post("/register", {
-        username: username,
-        password: password
-      });
+      const res = await API.get(`/register?username=${username}&password=${password}`);
 
       alert(res.data.message);
       setPage("login");

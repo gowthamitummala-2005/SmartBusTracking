@@ -7,10 +7,7 @@ function Login({ onLogin, setPage }) {
 
   const handleLogin = async () => {
     try {
-      const res = await API.post("/login", {
-        username: username,
-        password: password,
-      });
+      const res = await API.get(`/login?username=${username}&password=${password}`);
 
       if (res.data.success) {
         alert("Login successful");
