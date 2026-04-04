@@ -7,9 +7,10 @@ function Login({ onLogin, setPage }) {
 
   const handleLogin = async () => {
     try {
-      const res = await API.get(
-        `/login?username=${username}&password=${password}`
-      );
+      const res = await API.post("/login", {
+        username: username,
+        password: password,
+      });
 
       if (res.data.success) {
         alert("Login successful");
@@ -23,15 +24,12 @@ function Login({ onLogin, setPage }) {
   };
 
   return (
-    <div className="login-wrapper">
-      <div className="login-box">
+    <div>
         <h2>Login</h2>
-
         <input
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
-
         <input
           type="password"
           placeholder="Password"
@@ -44,7 +42,6 @@ function Login({ onLogin, setPage }) {
           Go to Register
         </p>
       </div>
-    </div>
   );
 }
 

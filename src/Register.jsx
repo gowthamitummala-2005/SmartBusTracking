@@ -7,9 +7,10 @@ function Register({ setPage }) {
 
   const handleRegister = async () => {
     try {
-      const res = await API.get(
-        `/register?username=${username}&password=${password}`
-      );
+      const res = await API.post("/register", {
+        username: username,
+        password: password
+      });
 
       alert(res.data.message);
       setPage("login");
@@ -19,28 +20,22 @@ function Register({ setPage }) {
   };
 
   return (
-    <div className="login-wrapper">
-      <div className="login-box">
+    <div>
         <h2>Register</h2>
-
         <input
           placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
-
         <input
           type="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-
         <button onClick={handleRegister}>Register</button>
-
         <p onClick={() => setPage("login")}>
           Back to Login
         </p>
       </div>
-    </div>
   );
 }
 
