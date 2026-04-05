@@ -29,8 +29,9 @@ useEffect(() => {
     .then(data => {
       setBusData(data);
     })
-    .catch((err) =>
-console.error(err));
+    .catch((err) =>{
+console.log("Backend not available,using default data");
+  });
 }, []);
 
   const barData = {
