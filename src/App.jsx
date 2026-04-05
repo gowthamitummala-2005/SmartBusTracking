@@ -20,15 +20,20 @@ function App() {
     setPage("login");
   };
 
+  // Show login/register pages
   if (!isLoggedIn) {
-    if (page === "register") {
-      return <Register 
-      setPage={setPage} />;
-    }
-    return <Login onLogin={handleLogin} 
-    setPage={setPage} />;
+    return (
+      <>
+        {page === "register" ? (
+          <Register setPage={setPage} />
+        ) : (
+          <Login onLogin={handleLogin} setPage={setPage} />
+        )}
+      </>
+    );
   }
 
+  // Show main app after login
   return (
     <div className="app-container">
       <h1>Smart Bus Tracking System</h1>
