@@ -12,7 +12,7 @@ function Login({ onLogin, setPage }) {
         password: password,
       });
 
-      if (response.data) {
+      if (response.status === 200) {
         alert("Login successful");
         onLogin();   // go to dashboard
       }

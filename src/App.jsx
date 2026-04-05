@@ -22,9 +22,11 @@ function App() {
 
   if (!isLoggedIn) {
     if (page === "register") {
-      return <Register setPage={setPage} />;
+      return <Register 
+      setPage={setPage} />;
     }
-    return <Login onLogin={handleLogin} setPage={setPage} />;
+    return <Login onLogin={handleLogin} 
+    setPage={setPage} />;
   }
 
   return (
