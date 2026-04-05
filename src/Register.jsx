@@ -1,23 +1,14 @@
 import React, { useState } from "react";
-import API from "./api";
 
 function Register({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = async () => {
-    try {
-      await API.post("/register", {
-        username: username,
-        password: password,
-      });
-
-      alert("Registration successful");
-      setPage("login");
-    } catch (error) {
-      alert("Registration failed");
-      console.log(error);
-    }
+  const handleRegister = () => {
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+    alert("Registration successful");
+    setPage("login");
   };
 
   return (
@@ -28,14 +19,12 @@ function Register({ setPage }) {
         <input
           type="text"
           placeholder="Username"
-          value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
-          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 

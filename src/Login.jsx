@@ -1,24 +1,18 @@
 import React, { useState } from "react";
-import API from "./api";
 
 function Login({ onLogin, setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const response = await API.post("/login", {
-        username: username,
-        password: password,
-      });
+  const handleLogin = () => {
+    const storedUser = localStorage.getItem("username");
+    const storedPass = localStorage.getItem("password");
 
-      if (response.status === 200) {
-        alert("Login successful");
-        onLogin();   // go to dashboard
-      }
-    } catch (error) {
+    if (username === storedUser && password === storedPass) {
+      alert("Login successful");
+      onLogin();
+    } else {
       alert("Invalid username or password");
-      console.log(error);
     }
   };
 
@@ -30,14 +24,12 @@ function Login({ onLogin, setPage }) {
         <input
           type="text"
           placeholder="Username"
-          value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
-          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
