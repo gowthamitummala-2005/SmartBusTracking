@@ -5,13 +5,9 @@ function Register({ setPage }) {
   const [password, setPassword] = useState("");
 
   const handleRegister = () => {
-    if(username === "" || password === "") {
-      alert("Enter username and password");
-      return;
-    }
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
-    alert("Registration successful");
+    alert("Registered successful");
     setPage("login");
   };
 
