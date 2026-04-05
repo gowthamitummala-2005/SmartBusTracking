@@ -8,7 +8,7 @@ function Login({ onLogin, setPage }) {
     const storedUser = localStorage.getItem("username"); 
     const storedPassword = localStorage.getItem("password");
 
-    if (username === storedUser && password === storedPassword) {
+    if (username === storedUser && password === storedPass) {
       alert("Login successful");
       onLogin();
     } else {  
