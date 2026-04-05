@@ -10,9 +10,9 @@ function Login({ onLogin, setPage }) {
 
     if (username === storedUser && password === storedPass) {
       alert("Login successful");
-      onLogin();
+      setPage("dashboard"); 
     } else {  
-      alert("Invalid credentials");
+      alert("Invalid username or password");
     }
   };
 
