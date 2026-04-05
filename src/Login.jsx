@@ -5,10 +5,10 @@ function Login({ onLogin, setPage }) {
   const [password, setPassword] = useState("");
 
   const handleLogin =  () => {
-    const storedUsername = localStorage.getItem("username"); 
+    const storedUser = localStorage.getItem("username"); 
     const storedPassword = localStorage.getItem("password");
 
-    if (username === storedUsername && password === storedPassword) {
+    if (username === storedUser && password === storedPassword) {
       alert("Login successful");
       onLogin();
     } else {  
