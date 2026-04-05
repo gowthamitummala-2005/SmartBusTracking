@@ -3,6 +3,25 @@ import React, { useEffect, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
+// Fix Leaflet marker icon issue (VERY IMPORTANT)
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
+
+// Google Maps style red marker
+const googleMarker = new L.Icon({
+  iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+  iconSize: [32, 32],
+});
+
 let map;
 let markers = [];
 let routeLine;
@@ -56,7 +75,7 @@ function MapView(){
   const [showTable,setShowTable]=useState(false);
   const [weatherText,setWeatherText]=useState("");
   const [arrivalText,setArrivalText]=useState("");
-  const API_URL="https://smartbus-backend.onrender.com"
+  const API_URL="https://smartbus-backend-gzy7.onrender.com"
 
   useEffect(()=>{
      fetch(`${API_BASE}/api/bus`)
