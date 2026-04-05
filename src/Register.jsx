@@ -4,16 +4,10 @@ function Register({ setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = async () => {
-    const res = await fetch(
-      "https://smartbus-backend-gzy7.onrender.com/api/auth/register?username=" +
-        username +
-        "&password=" +
-        password
-    );
-
-    const data = await res.json();
-    alert(data.message);
+  const handleRegister = () => {
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+    alert("Registration successful");
     setPage("login");
   };
 

@@ -4,20 +4,14 @@ function Login({ onLogin, setPage }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    const res = await fetch(
-      "https://smartbus-backend-gzy7.onrender.com/api/auth/login?username=" +
-        username +
-        "&password=" +
-        password
-    );
+  const handleLogin =  () => {
+    const storedUsername = localStorage.getItem("username"); 
+    const storedPassword = localStorage.getItem("password");
 
-    const data = await res.json();
-
-    if (data.success) {
+    if (username === storedUsername && password === storedPassword) {
       alert("Login successful");
       onLogin();
-    } else {
+    } else {  
       alert("Invalid credentials");
     }
   };
